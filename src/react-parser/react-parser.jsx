@@ -1,17 +1,16 @@
-import React, {Component, useState, useEffect} from 'react';
+import React from 'react';
 import JsxParser from "react-jsx-parser";
-import {Comp} from '../comp/comp'
+
 
 import { Style } from "react-style-tag";
 
 
-export const ReactParser = ({html, css, components, bindings = {}}) => {
-  const style =  css?<Style>{css}</Style> : null;
-  
-  
+export const ReactParser = ({html, css=null, components={}, bindings = {}}) => {
+  const style =  css?<style>{css}</style> : null;
   return <div>
     {style}
     <JsxParser
+      allowUnknownElements={true}
       bindings={bindings}
       components={{  ...(components || {}) }}
       jsx={`
